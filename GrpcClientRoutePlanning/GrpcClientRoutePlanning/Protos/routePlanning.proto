@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "RoutingGrpcService.Protos";
+
+package routePlanning;
+import "google/protobuf/timestamp.proto";
+
+message RouteRequest {
+	string StreetAddress = 1;
+	string City = 2;
+	string Zip = 3;
+}
+
+message RouteResponse {
+	int32 miles = 1;
+	google.protobuf.Timestamp DrivingTime = 2;
+	repeated string steps = 3;
+
+}
+
+service DrivingRouter {
+	rpc PlanRoute(RouteRequest) returns (RouteResponse);
+}
